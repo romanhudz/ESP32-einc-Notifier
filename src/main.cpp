@@ -18,8 +18,10 @@
 #include "providers/WeatherApiProvider.h"
 #include "credentials.h"
 
-// ─── Fake stubs (provide sample data without network/hardware) ────────────────
-#include "stubs/FakeEventProvider.h"
+// ─── Providers ───────────────────────────────────────────────────────────────
+#include "providers/CalendarEventProvider.h"
+
+// ─── Fake stubs ──────────────────────────────────────────────────────────────
 #include "stubs/NullSyncService.h"
 
 // ─── Infrastructure Instances ─────────────────────────────────────────────────
@@ -27,7 +29,7 @@ static Lyligo_4_7_e_paper              display;
 static Lyligo_4_7_e_paper_TimeProvider timeProvider;
 static WiFiConnectivityProvider        connectivity(WIFI_SSID, WIFI_PASSWORD);
 static WeatherApiProvider              weatherProvider(&connectivity, WEATHERAPI_KEY, "Chernivtsi");
-static FakeEventProvider               eventProvider;
+static CalendarEventProvider           eventProvider(&connectivity, CALENDAR_SERVICE_HOST, CALENDAR_SERVICE_PORT, CALENDAR_SERVICE_PATH);
 static NullSyncService                 syncService;
 
 // ─── Manager Instances ────────────────────────────────────────────────────────
